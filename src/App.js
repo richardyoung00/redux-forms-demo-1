@@ -1,28 +1,56 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form'
+import MenuItem from 'material-ui/MenuItem'
+import { RadioButton } from 'material-ui/RadioButton'
+import {
+  Checkbox,
+  RadioButtonGroup,
+  SelectField,
+  TextField,
+  Toggle,
+  Slider
+} from 'redux-form-material-ui'
 
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <form>
-          <div>
-            <label htmlFor="firstName">First Name</label>
-            <Field name="firstName" component="input" type="text"/>
+        <form className="App">
+          <div className="field">
+            <Field name="username" component={TextField} hintText="Street"/>
           </div>
-          <div>
-            <label htmlFor="lastName">Last Name</label>
-            <Field name="lastName" component="input" type="text"/>
+
+          <div className="field">
+            <Field name="plan" component={SelectField} hintText="Select a plan">
+              <MenuItem value="monthly" primaryText="Monthly"/>
+              <MenuItem value="yearly" primaryText="Yearly"/>
+              <MenuItem value="lifetime" primaryText="Lifetime"/>
+            </Field>
           </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <Field name="email" component="input" type="email"/>
+
+          <div className="field">
+            <Field name="agreeToTerms" component={Checkbox} label="Agree to terms?"/>
           </div>
-          <button type="submit">Submit</button>
+
+          <div className="field">
+            <Field name="receiveEmails" component={Toggle} label="Please spam me!"/>
+          </div>
+
+          <div className="field">
+            <Field name="bestFramework" component={RadioButtonGroup}>
+              <RadioButton value="react" label="React"/>
+              <RadioButton value="angular" label="Angular"/>
+              <RadioButton value="ember" label="Ember"/>
+            </Field>
+          </div>
+
+          <div className="field">
+            <Field name="slider" component={Slider}/>
+          </div>
+
+
         </form>
-      </div>
     );
   }
 }
